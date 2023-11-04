@@ -1,20 +1,43 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import * as React from 'react';
+import { Button, View, Text } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import HomeLinked from './compoments/HomeLinked'
 
-export default function App() {
+
+function Home({}) {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+    <View style={{flex:1}}>
+
+      <HomeLinked/> 
+    </View>
+  );
+}
+function Detail(route) {
+  return (
+    <View>
+      <Button title="back"
+      onPress ={()=>{
+    navigation.navigate('home');
+  }}>
+
+      </Button>
+      {/* <Lab3b/>  */}
     </View>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const Stack = createNativeStackNavigator();
+
+function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="home" component={Home} />
+        <Stack.Screen name="detail" component={Detail} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
+
+export default App;
