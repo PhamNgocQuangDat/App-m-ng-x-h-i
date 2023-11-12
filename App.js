@@ -2,36 +2,41 @@ import * as React from 'react';
 import { Button, View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import HomeLinked from './compoments/HomeLinked'
-// import ManageMyWork from './compoments/ManageMyWork'
-// import Messagin from './compoments/Messagin'
-import SharePost from './compoments/SharePost'
-function Home({navigation}) {
+import Login from './compoments/Login';
+
+function evtLogin({ navigation }) {
+  const handleSignIn = (user) => {
+    console.log('Đăng nhập thành công', user);
+ 
+    setTimeout(() => {
+      navigation.navigate('DETAIL', { user });
+    }, 1000);
+  };
+  
+
   return (
-    <View style={{flex:1}}>
-
-      <HomeLinked/> 
-
-      <Button title="Manage my work"
-  onPress ={()=>{
-    navigation.navigate('Manage my work');
-  }}>
-  </Button>
-
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Login signIn={handleSignIn} />
     </View>
   );
 }
 
 
-function Detail({navigation,route}) {
+
+
+function Detail({ route }) {
+  
+  const { user } = route.params;
+
   return (
-    <View >  
-    {/* <ManageMyWork/> */}
-    {/* <Messagin/> */}
-     <SharePost/>
+    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+      <Text>{`Welcome, ${user.User}!`}</Text>
+  
     </View>
   );
 }
+
+
 
 const Stack = createNativeStackNavigator();
 
@@ -39,8 +44,8 @@ function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="home" component={Home} />
-        <Stack.Screen name="Manage my work" component={Detail} />
+        <Stack.Screen name="LINKEDIN" component={evtLogin} />
+        <Stack.Screen name="DETAIL" component={Detail} />
       </Stack.Navigator>
     </NavigationContainer>
   );
