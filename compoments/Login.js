@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
 import { Button, View, Text, TextInput, Alert } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 function Login(props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const navigation = useNavigation();
 
+  const handleSignUpPress = () => {
+    navigation.navigate('LoginsendDangKy');
+  }
   const handleLoginPress = async () => {
     try {
       const response = await fetch('https://654468f65a0b4b04436c5590.mockapi.io/Login');
@@ -14,6 +19,7 @@ function Login(props) {
       const user = data.find((item) => item.User === email && item.Pass === password);
 
       if (user) {
+     
         props.signIn(user);
       } else {
         console.log('Đăng nhập không thành công');
@@ -76,12 +82,14 @@ function Login(props) {
         <p id='trangthailogin' style={{color:'red' ,borderWidth: 1, fontSize: 15}}></p>
         
         <a href=''>Forgot password?</a>
-        <br></br>
+        
+        
      
         <Button title="LOGIN"
-         
+      
         onPress={handleLoginPress} />
-       
+        <br></br>
+          <Text onPress={handleSignUpPress}>Sign Up</Text>
       </View>
     </View>
     </View>

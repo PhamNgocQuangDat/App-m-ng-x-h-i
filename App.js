@@ -4,6 +4,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Login from './compoments/Login';
 
+import DangKy from './compoments/dangky';
+
 function evtLogin({ navigation }) {
   const handleSignIn = (user) => {
     console.log('Đăng nhập thành công', user);
@@ -21,7 +23,16 @@ function evtLogin({ navigation }) {
   );
 }
 
+function LoginsendDangKy({ navigation }) {
+  
+  navigation.navigate('LoginsendDangKy');
 
+  return (
+
+          <DangKy/> 
+
+  );
+}
 
 
 function Detail({ route }) {
@@ -29,10 +40,12 @@ function Detail({ route }) {
   const { user } = route.params;
 
   return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text>{`Welcome, ${user.User}!`}</Text>
+    // <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+    //   <Text>{`Welcome, ${user.User}!`}</Text>
   
-    </View>
+    // </View>
+          <DangKy/> 
+
   );
 }
 
@@ -45,6 +58,7 @@ function App() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="LINKEDIN" component={evtLogin} />
+        <Stack.Screen name="LoginsendDangKy" component={LoginsendDangKy} />
         <Stack.Screen name="DETAIL" component={Detail} />
       </Stack.Navigator>
     </NavigationContainer>
