@@ -4,13 +4,16 @@ import { useNavigation } from '@react-navigation/native';
 
 const LoginScreen = () => {
   const [User, setUsername] = useState('');
+  const [Pass2, setPassword2] = useState('');
   const [Pass, setPassword] = useState('');
   const [loginError, setLoginError] = useState('');
   const navigation = useNavigation();
 
   const handleLogin = async () => {
-    if (User === '' || Pass === '') {
+    if (User === '' || Pass === '' || Pass2 === '') {
       setLoginError('Vui lòng nhập đầy đủ tên người dùng và mật khẩu');
+    } else if (Pass !== Pass2) {
+      setLoginError('Vui lòng nhập password giống nhau');
     } else {
       try {
         const response = await fetch('https://654468f65a0b4b04436c5590.mockapi.io/Login', {
@@ -33,10 +36,9 @@ const LoginScreen = () => {
 
         navigation.navigate('LINKEDIN');
 
-
         setLoginError('');
       } catch (error) {
-        setLoginError('Đăng nhập không thành công');
+        setLoginError('Đăng ký không thành công');
         console.error('Login error:', error);
       }
     }
@@ -59,7 +61,13 @@ const LoginScreen = () => {
         onChangeText={(text) => setPassword(text)}
         secureTextEntry
       />
-
+      <TextInput
+        style={styles.input}
+        placeholder="Nhập Lại Password"
+        value={Pass2}
+        onChangeText={(text) => setPassword2(text)}
+        secureTextEntry
+      />
       <Text style={{ color: 'red', fontSize: 15 }}>{loginError}</Text>
 
       <Button title="Sign Up" onPress={handleLogin} />
