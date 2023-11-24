@@ -1,13 +1,16 @@
 import React, { useState } from 'react';
 import { View, TextInput, Button, Text, StyleSheet } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
 
 const LoginScreen = () => {
   const [User, setUsername] = useState('');
   const [Pass, setPassword] = useState('');
+  const [loginError, setLoginError] = useState('');
+  const navigation = useNavigation();
 
   const handleLogin = async () => {
     if (User === '' || Pass === '') {
-      console.log('Vui lòng nhập đầy đủ tên người dùng và mật khẩu');
+      setLoginError('Vui lòng nhập đầy đủ tên người dùng và mật khẩu');
     } else {
       try {
         const response = await fetch('https://654468f65a0b4b04436c5590.mockapi.io/Login', {
@@ -21,11 +24,19 @@ const LoginScreen = () => {
           }),
         });
 
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
         const data = await response.json();
         console.log('Login response:', data);
 
-        // Handle success or error response from the server
+        navigation.navigate('LINKEDIN');
+
+
+        setLoginError('');
       } catch (error) {
+        setLoginError('Đăng nhập không thành công');
         console.error('Login error:', error);
       }
     }
@@ -48,6 +59,9 @@ const LoginScreen = () => {
         onChangeText={(text) => setPassword(text)}
         secureTextEntry
       />
+
+      <Text style={{ color: 'red', fontSize: 15 }}>{loginError}</Text>
+
       <Button title="Sign Up" onPress={handleLogin} />
     </View>
   );
