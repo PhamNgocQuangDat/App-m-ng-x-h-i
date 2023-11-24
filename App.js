@@ -5,6 +5,10 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import Login from './compoments/Login';
 
 import DangKy from './compoments/dangky';
+import HomePages from './compoments/HomePage'
+import Notifications from './compoments/Notification';
+import Messagins from './compoments/Messagin';
+import SharePosts from './compoments/SharePost';
 
 function evtLogin({ navigation }) {
   const handleSignIn = (user) => {
@@ -35,16 +39,16 @@ function LoginsendDangKy({ navigation }) {
 }
 
 
-function Detail({ route }) {
+function Detail({ navigation,route }) {
   
-  const { user } = route.params;
+
 
   return (
-    // <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-    //   <Text>{`Welcome, ${user.User}!`}</Text>
-  
-    // </View>
-          <DangKy/> 
+    <View >  
+    {/* <ManageMyWork/> */}
+    {/* <Messagin/> */}
+     <HomePages/>
+    </View>
 
   );
 }
@@ -60,7 +64,20 @@ function App() {
         <Stack.Screen name="LINKEDIN" component={evtLogin} />
         <Stack.Screen name="LoginsendDangKy" component={LoginsendDangKy} />
         <Stack.Screen name="DETAIL" component={Detail} />
+        <Stack.Screen name="HomePage" component={HomePages} />
+        <Stack.Screen
+          name="Notification"
+          component={Notifications}
+          options={{ headerShown: false }} />
+         <Stack.Screen
+          name="SharePost"
+          component={SharePosts}/>
+           <Stack.Screen
+          name="Messagin"
+          component={Messagins}
+           />
       </Stack.Navigator>
+      
     </NavigationContainer>
   );
 }
