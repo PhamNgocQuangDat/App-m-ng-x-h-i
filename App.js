@@ -9,14 +9,15 @@ import HomePages from './compoments/HomePage'
 import Notifications from './compoments/Notification';
 import Messagins from './compoments/Messagin';
 import SharePosts from './compoments/SharePost';
-
+import HomeLinked from'./compoments/HomeLinked';
 function evtLogin({ navigation }) {
   const handleSignIn = (user) => {
     console.log('Đăng nhập thành công', user);
- 
+    navigation.navigate('HomeLinked', { user });
+
     setTimeout(() => {
       navigation.navigate('DETAIL', { user });
-    }, 1000);
+    }, 3000);
   };
   
 
@@ -65,6 +66,8 @@ function App() {
         <Stack.Screen name="LoginsendDangKy" component={LoginsendDangKy} />
         <Stack.Screen name="DETAIL" component={Detail} />
         <Stack.Screen name="HomePage" component={HomePages} />
+        <Stack.Screen name="HomeLinked" component={HomeLinked} />
+
         <Stack.Screen
           name="Notification"
           component={Notifications}
