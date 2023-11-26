@@ -6,6 +6,15 @@ import Login from './compoments/Login';
 import jobs from './compoments/jobs';
 import Addnotes from './compoments/Addnotes';
 
+import Friendship_suggestions from './compoments/Friendship_suggestions';
+
+import Setting from './compoments/Setting';
+import ManageMyWork from './compoments/ManageMyWork';
+import formapply from './compoments/formapply';
+
+
+import Personal_page from './compoments/Personal_page';
+
 import DangKy from './compoments/dangky';
 import HomePages from './compoments/HomePage'
 import Notifications from './compoments/Notification';
@@ -76,6 +85,17 @@ function App() {
                 <Stack.Screen name="ContentJob" component={ContentJob} />
 
         <Stack.Screen name="Addnotes" component={Addnotes} />
+
+        <Stack.Screen name="Friendship_suggestions" component={Friendship_suggestions} />
+
+        <Stack.Screen name="Setting" component={Setting} />
+        <Stack.Screen name="ManageMyWork" component={ManageMyWork} />
+
+        <Stack.Screen name="Personal_page" component={Personal_page} />
+        <Stack.Screen name="formapply" component={formapply} />
+
+        
+        
 
         <Stack.Screen
           name="Notification"
