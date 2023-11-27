@@ -1,15 +1,12 @@
 import React from 'react';
 import { View, TouchableOpacity, Image, StyleSheet, Dimensions, Text  } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
-import { faGear } from '@fortawesome/free-solid-svg-icons';
 
 function PersonalPage() {
-
   const navigation = useNavigation();
 
    const navigateToPage = (pageName) => {
-    navigation.navigate(pageName); // Chuyển hướng đến trang tương ứng với pageName
+    navigation.navigate(pageName); 
   }
   return (
     <View style={styles.container}>
@@ -27,16 +24,13 @@ function PersonalPage() {
         <View style={styles.profileContent}>
           <View style={styles.profileName}>
             <Text style={styles.name}>HOANG CAO</Text>
+            <TouchableOpacity onPress={() => navigateToPage('Setting')}>
 
-             <TouchableOpacity onPress={() => navigateToPage('Setting')}>
-        <View style={{ flexDirection: 'row', alignItems: 'center' }}>
-          <FontAwesomeIcon icon={faGear} />
-          <Image
-            source={require('../assets/icon_caybut.jpg')}
-            style={styles.icon}
-          />
-        </View>
-      </TouchableOpacity>
+      <Image
+        source={require('../assets/icon_caybut.jpg')}
+        style={styles.icon}
+      />
+            </TouchableOpacity>
           </View>
           <Text style={styles.description}>Student IUH</Text>
           <Text style={styles.description}>HỒ CHÍ MINH, VIỆT NAM</Text>
@@ -53,10 +47,14 @@ function PersonalPage() {
             <View style={styles.divider}>
               <View style={styles.textWithIcon}>
                 <Text style={styles.description}>Show recruiter you're open to work</Text>
+                <TouchableOpacity onPress={() => navigateToPage('Setting')}>
+
                 <Image
                   source={require('../assets/icon_caybut.jpg')}
                   style={styles.icon}
                 />
+                            </TouchableOpacity>
+
               </View>
               <Text style={styles.description}>Control who sees this</Text>
             </View>
