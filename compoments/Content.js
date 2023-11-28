@@ -11,7 +11,7 @@ const Content = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('https://6550a2047d203ab6626e003e.mockapi.io/users');
+      const response = await axios.get('https://654468f65a0b4b04436c5590.mockapi.io/Login');
       setData(response.data);
     } catch (error) {
       console.error('Error fetching data:', error.message);
@@ -24,8 +24,8 @@ const Content = () => {
       <View style={styles.userInfo}>
         <Image style={styles.avatar} source={{ uri: item.avatar }} />
         <View>
-          <Text style={styles.userName}>{item.userName}</Text>
-          <Text style={styles.group}>{item.group}</Text>
+          <Text style={styles.User}>{item.User}</Text>
+          <Text style={styles.group}>Group:{item.group}</Text>
         </View>
       </View>
       <Text style={styles.time}>{item.time}</Text>
@@ -52,14 +52,18 @@ const styles = StyleSheet.create({
     padding: 0,
   },
   feedItem: {
-    marginBottom: 20,
+    marginBottom: 10,
+    borderWidth: 0.5,
+    borderColor: '#ccc',
+    borderRadius: 8,
+    padding: 2,
   },
   userInfo: {
     flexDirection: 'row',
     alignItems: 'center',
     marginBottom: 5,
   },
-  userName: {
+  User: {
     fontSize: 18,
     fontWeight: 'bold',
   },

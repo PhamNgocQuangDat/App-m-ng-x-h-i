@@ -11,7 +11,7 @@ const CTNotification = () => {
 
   const fetchData = async () => {
     try {
-      const response = await axios.get('https://6550a2047d203ab6626e003e.mockapi.io/users');
+      const response = await axios.get('https://654468f65a0b4b04436c5590.mockapi.io/Login');
       setData(response.data);
     } catch (error) {
       console.error('Error fetching data:', error.message);
@@ -25,7 +25,7 @@ const CTNotification = () => {
           <Image style={styles.avatar} source={{ uri: item.avatar }} />
           <View style={styles.userInfoText2}>
           <View style={styles.userInfoText}>
-            <Text style={styles.userName}>{item.userName}</Text>
+            <Text style={styles.User}>{item.User}</Text>
             <Text style={styles.viewText}> and 2,434 </Text>
            
           </View>
@@ -33,7 +33,7 @@ const CTNotification = () => {
           </View>
         </View>
         
-        <Text style={styles.postText}>This is very wonderful news, I'm looking forward to November ...</Text>
+        <Text style={styles.postText}>{item.postText}</Text>
         <View style={styles.commentsAndReactions}>
           <Text style={styles.reaction}>{item.reaction} Reactions</Text>
           <Text style={styles.comment}>{item.comment} Comments </Text>
@@ -70,7 +70,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 5,
   },
-  userName: {
+  User: {
     fontSize: 18,
     fontWeight: 'bold',
   },
